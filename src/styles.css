@@ -4,6 +4,12 @@ h6 {
   text-align: center;
 }
 
+.page-container {
+  width: 600px;
+  display: block;
+  margin: 0 auto;
+}
+
 .container {
   width: 600px;
   background-color: rgb(202, 241, 233);
