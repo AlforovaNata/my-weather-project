@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="src/styles.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather-app">
+        <div class="row">
+          <div class="col-md-12">
+            <a href="#">Kharkiv</a>
+            <a href="#">Odessa</a>
+          </div>
+        </div>
+       
+          <div class="row">
+            <div class="col-4">
+                <form id="city-weather">
+              <input
+                type="text"
+                placeholder="Enter a city..."
+                class="name"
+                id="input-city"
+              />
+            </div>
+            <div class="col-2">
+              <input type="submit" value="Search" class="buttom" />
+            </div>
+            <div class="col-6">
+              <button class="btn btn-primary btn-sm" id="current-location-button">
+                Current
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 id="city">Lviv</h1>
+                <img src="icons/sun.png" alt="Sun" />
+              </div>
+              <div class="col-sm-6">
+                <p style="text-align: center;" id="currentDay"></p>
+                <h2 class="display-5">
+                  <span id="temperature">20</span
+                  ><a href="#" id="celsius">°C</a> ∣<a href="#" id="fahrenheit"
+                    >°F</a
+                  >
+                </h2>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <p style="text-align: center;">Real feel<br /><span id="feels"> 17</span>°C</p>
+                  </div>
+                  <div class="col-sm-6">
+                    <img
+                      src="icons/temperature.png"
+                      alt="Temperature"
+                      width="36"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <p>
+              <img src="icons/sunrise.png" alt="Sunrise" width="26" /> Sunrise
+              <span id="sunrise"> 4:14</span>
+            </p>
+            <p>
+              <img src="icons/sunset.png" alt="Sunset" width="26" /> Sunset
+              <span  id="sunset"> 21:14</span> 
+            </p>
+            <p>
+              <img src="icons/wind.png"  alt="Wind" width="26" /> Wind <span id="wind">3</span> km/h 
+            </p>
+            <p>
+              <img src="icons/humidity.png"  alt="humidity" width="26" />
+              Humidity <span id="humidity"> 77</span>%
+            </p>
+            <p>
+              <img src="icons/uv-index.png" alt="UV" width="26" /> UV Index 4
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col text-center" id="tomorrow">
+            <h6 id="tomorrow">Monday <br />6 Jun</h6>
+            <p>15°C</p>
+            <img src="icons/wind-weather.png" />
+          </div>
+          <div class="col text-center">
+            <h6>Tuesday <br />7 Jun</h6>
+            <p>18°C</p>
+            <img src="icons/cloud.png" />
+          </div>
+          <div class="col text-center">
+            <h6>Wednesday<br />8 Jun</h6>
+            <p>18°C</p>
+            <img src="icons/sunwa.png" />
+          </div>
+          <div class="col text-center">
+            <h6>Thursday<br />9 Jun</h6>
+            <p>20°C</p>
+            <img src="icons/sun2.png" />
+          </div>
+          <div class="col text-center">
+            <h6>Friday<br />10 Jun</h6>
+            <p>23°C</p>
+            <img src="icons/sun2.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
