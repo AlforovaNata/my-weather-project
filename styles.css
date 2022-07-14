@@ -1,0 +1,26 @@
+h6 {
+  color: #2978c9;
+  font: normal;
+  text-align: center;
+}
+
+.container {
+  width: 600px;
+  background-color: rgb(202, 241, 233);
+  border-width: 8px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  margin-top: 40px;
+}
+
+.buttom {
+  border-radius: 20px;
+  background-color: #ffffff;
+  border-color: #84d0ca;
+}
+
+.name {
+  border-radius: 20px;
+  background-color: #ffffff;
+  border-color: #84d0ca;
+}
