@@ -122,4 +122,40 @@ searchForm.addEventListener("submit", submitCity);
 let currentButton = document.querySelector("#current-location-button");
 currentButton.addEventListener("click", getPosition);
 
+function kyivkWeather(event) {
+  event.preventDefault();
+  let city = "Kyiv";
+  searchCity(city);
+}
+
+function odessaWeather(event) {
+  event.preventDefault();
+  let city = "Odessa";
+  searchCity(city);
+}
+
+function kharkivWeather(event) {
+  event.preventDefault();
+  let city = "Kharkiv";
+  searchCity(city);
+}
+
+function gdanskWeather(event) {
+  event.preventDefault();
+  let city = "Gdansk";
+  searchCity(city);
+}
+
+let searchKyiv = document.querySelector("#kyiv");
+searchKyiv.addEventListener("click", kyivkWeather);
+
+let searchOdessa = document.querySelector("#odessa");
+searchOdessa.addEventListener("click", odessaWeather);
+
+let searchKharkiv = document.querySelector("#kharkiv");
+searchKharkiv.addEventListener("click", kharkivWeather);
+
+let searchGdansk = document.querySelector("#gdansk");
+searchGdansk.addEventListener("click", gdanskWeather);
+
 searchCity("Lviv");
