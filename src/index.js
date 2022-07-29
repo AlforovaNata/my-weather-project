@@ -26,7 +26,7 @@ function showCity(event) {
   event.preventDefault();
   let inputCity = document.querySelector("#input-city");
 
-  let h1 = document.querySelector("h1");
+  let h2 = document.querySelector("h2");
   if (inputCity.value) {
     h1.innerHTML = `${inputCity.value}`;
   } else {
