@@ -60,8 +60,8 @@ let celsiusTemp = document.querySelector("#celsius");
 celsiusTemp.addEventListener("click", showCelsius);
 
 function displayWeather(response) {
-  let h1 = document.querySelector("#city");
-  h1.innerHTML = response.data.name;
+  let h2 = document.querySelector("#city");
+  h2.innerHTML = response.data.name;
   let temperature = Math.round(response.data.main.temp);
   let todayTemp = document.querySelector("#temperature");
   todayTemp.innerHTML = `${temperature}`;
