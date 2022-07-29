@@ -4,6 +4,10 @@ h6 {
   text-align: center;
 }
 
+p {
+  text-transform: capitalize;
+}
+
 .page-container {
   width: 600px;
   display: block;
@@ -29,4 +33,11 @@ h6 {
   border-radius: 20px;
   background-color: #ffffff;
   border-color: #84d0ca;
+}
+.weather-temperature .active {
+  color: #202124;
+  cursor: default;
+}
+.weather-temperature .active:hover {
+  text-decoration: none;
 }

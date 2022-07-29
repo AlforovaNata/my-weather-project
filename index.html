@@ -30,6 +30,8 @@
           <div class="col-md-12">
             <a href="#">Kharkiv</a>
             <a href="#">Odessa</a>
+             <a href="#" id="kharkiv">Kharkiv</a>
+            <a href="#" id="gdansk">Gdansk</a>
           </div>
         </div>
        
@@ -58,17 +60,20 @@
           <div class="col-sm-8">
             <div class="row">
               <div class="col-sm-6">
-                <h1 id="city">Lviv</h1>
-                <img src="icons/sun.png" alt="Sun" />
+                <h2 id="city">Lviv</h2>
+                <img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" id= "weather-icon"/>
               </div>
               <div class="col-sm-6">
                 <p style="text-align: center;" id="currentDay"></p>
+                <div class="weather-temperature">
                 <h2 class="display-5">
                   <span id="temperature">20</span
-                  ><a href="#" id="celsius">°C</a> ∣<a href="#" id="fahrenheit"
+                  ><a href="#" id="celsius" class="active">°C</a> ∣<a href="#" id="fahrenheit" class="active"
                     >°F</a
                   >
                 </h2>
+                </div>
+                
                 <div class="row">
                   <div class="col-sm-6">
                     <p style="text-align: center;">Real feel<br /><span id="feels"> 17</span>°C</p>
@@ -86,13 +91,9 @@
           </div>
 
           <div class="col-sm-4">
-            <p>
-              <img src="icons/sunrise.png" alt="Sunrise" width="26" /> Sunrise
-              <span id="sunrise"> 4:14</span>
-            </p>
-            <p>
-              <img src="icons/sunset.png" alt="Sunset" width="26" /> Sunset
-              <span  id="sunset"> 21:14</span> 
+          <p>
+              <img src="src/icons/pressure.png" alt="pressure" width="26" /> Pressure
+              <span  id="pressure"> </span> mb
             </p>
             <p>
               <img src="icons/wind.png"  alt="Wind" width="26" /> Wind <span id="wind">3</span> km/h 
@@ -100,9 +101,6 @@
             <p>
               <img src="icons/humidity.png"  alt="humidity" width="26" />
               Humidity <span id="humidity"> 77</span>%
-            </p>
-            <p>
-              <img src="icons/uv-index.png" alt="UV" width="26" /> UV Index 4
             </p>
           </div>
         </div>
@@ -140,7 +138,6 @@
         <a href="https://github.com/AlforovaNata/my-weather-project" target="_blank">Open-source code</a>, by Nataliia Alforova
     </small>
     </div>
-    </body>
     <script src="src/index.js"></script>
   </body>
 </html>
