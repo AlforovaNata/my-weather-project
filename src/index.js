@@ -1,26 +1,26 @@
-let weekDay = document.querySelector("#currentDay");
-let now = new Date();
-let dayToday = now.getDay();
-let hours = now.getHours();
-let minutes = now.getMinutes();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
 
-if (hours < 10) {
-  hours = `0${hours}`;
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${hours}:${minutes}`;
 }
-
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-weekDay.innerHTML = `Last updated</br>${days[dayToday]} ${hours}:${minutes}`;
 
 function displayForecast() {
   let forecastElement = document.querySelector("#forecast");
@@ -40,7 +40,7 @@ function displayForecast() {
             <span>15°C</span>
             
           </div>
-            <img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="48"/>
+            <img src="https://openweathermap.org/img/wn/50d@2x.png" alt="" width="48"/>
 
           </div>
   `;
