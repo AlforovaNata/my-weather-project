@@ -22,6 +22,35 @@ if (minutes < 10) {
 }
 weekDay.innerHTML = `Last updated</br>${days[dayToday]} ${hours}:${minutes}`;
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+        <div class="col text-center" id="tomorrow">
+            <div class="weather-forecast-date">
+            <h6>${day} </h6>
+          </div>
+          <div class="weather-forecast-temperature">
+            <span>15°C</span>
+            
+          </div>
+            <img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="48"/>
+
+          </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
+
 function showCity(event) {
   event.preventDefault();
   let inputCity = document.querySelector("#input-city");
@@ -159,3 +188,4 @@ let searchGdansk = document.querySelector("#gdansk");
 searchGdansk.addEventListener("click", gdanskWeather);
 
 searchCity("Lviv");
+displayForecast();
