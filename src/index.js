@@ -22,14 +22,6 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function formatDay(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-  return days[day];
-}
-
 function sunTime(timestamp) {
   let date = new Date(timestamp * 1000);
   let hours = date.getHours();
@@ -38,34 +30,52 @@ function sunTime(timestamp) {
   return formatTime;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
 
-  let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
-
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
         <div class="col text-center" id="tomorrow">
             <div class="weather-forecast-date">
-            <h6>${day} </h6>
+            <h6>${formatDay(forecastDay.dt)} </h6>
           </div>
           <div class="weather-forecast-temperature">
-            <span>15°C</span>
+            <span>${Math.round(forecastDay.temp.day)}°C</span>
             
           </div>
-            <img src="https://openweathermap.org/img/wn/50d@2x.png" alt="" width="48"/>
+            <img src="https://openweathermap.org/img/wn/${
+              forecastDay.weather[0].icon
+            }@2x.png" alt="" width="48"/>
 
           </div>
   `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
 }
 
 function getforecast(coordinates) {
