@@ -8,6 +8,26 @@ p {
   text-transform: capitalize;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  color: rgb(95, 92, 92);
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 19px;
+}
+
+li:first-letter {
+  text-transform: capitalize;
+}
+
 .page-container {
   width: 600px;
   display: block;
@@ -53,6 +73,10 @@ p {
   color: #62a3d4;
 }
 
-.weather-forecast-temperature {
+.weather-forecast-temperature-min {
+  opacity: 0.5;
+}
+
+.weather-forecast-temperatures {
   font-size: 16px;
 }

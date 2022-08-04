@@ -1,3 +1,5 @@
+var apiKey = "c45c6ce7066c8be876b5001b7f84d122";
+
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
@@ -62,7 +64,12 @@ function displayForecast(response) {
             <h6>${formatDay(forecastDay.dt)} </h6>
           </div>
           <div class="weather-forecast-temperature">
-            <span>${Math.round(forecastDay.temp.day)}°C</span>
+           <span class="weather-forecast-temperature-max"> ${Math.round(
+             forecastDay.temp.max
+           )}° </span>
+          <span class="weather-forecast-temperature-min"> ${Math.round(
+            forecastDay.temp.min
+          )}° </span>
             
           </div>
             <img src="https://openweathermap.org/img/wn/${
@@ -81,13 +88,14 @@ function displayForecast(response) {
 function getforecast(coordinates) {
   console.log(coordinates);
   let units = "metric";
-  let apiKey = "c45c6ce7066c8be876b5001b7f84d122";
+
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayForecast);
 }
 
 function displayWeather(response) {
   let h2 = document.querySelector("#city");
+  let dateElement = document.querySelector("#date");
   let temperature = Math.round(response.data.main.temp);
   let todayTemp = document.querySelector("#temperature");
   let descriptionElement = document.querySelector("#description");
@@ -105,6 +113,7 @@ function displayWeather(response) {
   celsiusTemperature = response.data.main.temp;
 
   h2.innerHTML = response.data.name;
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
   todayTemp.innerHTML = `${temperature}`;
   descriptionElement.innerHTML = response.data.weather[0].description;
   realFeel.innerHTML = Math.round(response.data.main.feels_like);
@@ -125,39 +134,15 @@ function showCity(event) {
   if (inputCity.value) {
     h1.innerHTML = `${inputCity.value}`;
   } else {
-    h1.innerHTML = null;
+    h2.innerHTML = null;
     alert("Please type a city");
   }
 }
 let cityWeather = document.querySelector("#city-weather");
 cityWeather.addEventListener("submit", showCity);
 
-function showFahrenheit(event) {
-  event.preventDefault();
-  celsiusTemp.classList.remove("active");
-  fahrenheitTemp.classList.add("active");
-  let temperatureElement = document.querySelector("#temperature");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-function showCelsius(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
-let celsiusTemperature = null;
-
-let fahrenheitTemp = document.querySelector("#fahrenheit");
-fahrenheitTemp.addEventListener("click", showFahrenheit);
-
-let celsiusTemp = document.querySelector("#celsius");
-celsiusTemp.addEventListener("click", showCelsius);
-
 function searchCity(city) {
   let units = "metric";
-  let apiKey = "c45c6ce7066c8be876b5001b7f84d122";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(displayWeather);
@@ -173,7 +158,6 @@ function showPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let units = "metric";
-  let apiKey = "c45c6ce7066c8be876b5001b7f84d122";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
   console.log(apiUrl);
   axios.get(apiUrl).then(displayWeather);
