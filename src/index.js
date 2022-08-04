@@ -22,7 +22,24 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function sunTime(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let formatTime = hours + ":" + minutes.toString().padStart(2, "0");
+  return formatTime;
+}
+
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
 
   let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
@@ -51,6 +68,45 @@ function displayForecast() {
   console.log(forecastHTML);
 }
 
+function getforecast(coordinates) {
+  console.log(coordinates);
+  let units = "metric";
+  let apiKey = "c45c6ce7066c8be876b5001b7f84d122";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function displayWeather(response) {
+  let h2 = document.querySelector("#city");
+  let temperature = Math.round(response.data.main.temp);
+  let todayTemp = document.querySelector("#temperature");
+  let descriptionElement = document.querySelector("#description");
+  let realFeel = document.querySelector("#feels");
+  let humidity = document.querySelector("#humidity");
+  let windSpeed = document.querySelector("#wind");
+  let sunriseElement = document.querySelector("#sunrise");
+  let sunsetElement = document.querySelector("#sunset");
+  let iconElement = document.querySelector("#weather-icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+
+  celsiusTemperature = response.data.main.temp;
+
+  h2.innerHTML = response.data.name;
+  todayTemp.innerHTML = `${temperature}`;
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  realFeel.innerHTML = Math.round(response.data.main.feels_like);
+  humidity.innerHTML = response.data.main.humidity;
+  windSpeed.innerHTML = Math.round(response.data.wind.speed);
+  sunriseElement.innerHTML = sunTime(response.data.sys.sunrise);
+  sunsetElement.innerHTML = sunTime(response.data.sys.sunset);
+  iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getforecast(response.data.coord);
+}
+
 function showCity(event) {
   event.preventDefault();
   let inputCity = document.querySelector("#input-city");
@@ -74,6 +130,7 @@ function showFahrenheit(event) {
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
+
 function showCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
@@ -87,31 +144,6 @@ fahrenheitTemp.addEventListener("click", showFahrenheit);
 
 let celsiusTemp = document.querySelector("#celsius");
 celsiusTemp.addEventListener("click", showCelsius);
-
-function displayWeather(response) {
-  let h2 = document.querySelector("#city");
-  h2.innerHTML = response.data.name;
-  let temperature = Math.round(response.data.main.temp);
-  let todayTemp = document.querySelector("#temperature");
-  todayTemp.innerHTML = `${temperature}`;
-  let descriptionElement = document.querySelector("#description");
-  descriptionElement.innerHTML = response.data.weather[0].description;
-  let realFeel = document.querySelector("#feels");
-  realFeel.innerHTML = Math.round(response.data.main.feels_like);
-  let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = response.data.main.humidity;
-  let windSpeed = document.querySelector("#wind");
-  windSpeed.innerHTML = Math.round(response.data.wind.speed);
-  let pressure = document.querySelector("#pressure");
-  pressure.innerHTML = response.data.main.pressure;
-  let iconElement = document.querySelector("#weather-icon");
-  iconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-  iconElement.setAttribute("alt", response.data.weather[0].description);
-  celsiusTemperature = response.data.main.temp;
-}
 
 function searchCity(city) {
   let units = "metric";
@@ -133,7 +165,7 @@ function showPosition(position) {
   let units = "metric";
   let apiKey = "c45c6ce7066c8be876b5001b7f84d122";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-
+  console.log(apiUrl);
   axios.get(apiUrl).then(displayWeather);
 }
 
@@ -176,16 +208,13 @@ function gdanskWeather(event) {
 }
 
 let searchKyiv = document.querySelector("#kyiv");
-searchKyiv.addEventListener("click", kyivkWeather);
-
 let searchOdessa = document.querySelector("#odessa");
-searchOdessa.addEventListener("click", odessaWeather);
-
 let searchKharkiv = document.querySelector("#kharkiv");
-searchKharkiv.addEventListener("click", kharkivWeather);
-
 let searchGdansk = document.querySelector("#gdansk");
+
+searchKyiv.addEventListener("click", kyivkWeather);
+searchOdessa.addEventListener("click", odessaWeather);
+searchKharkiv.addEventListener("click", kharkivWeather);
 searchGdansk.addEventListener("click", gdanskWeather);
 
 searchCity("Lviv");
-displayForecast();
