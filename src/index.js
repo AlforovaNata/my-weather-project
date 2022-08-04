@@ -86,9 +86,7 @@ function displayForecast(response) {
 }
 
 function getforecast(coordinates) {
-  console.log(coordinates);
   let units = "metric";
-
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayForecast);
 }
@@ -159,7 +157,6 @@ function showPosition(position) {
   let lon = position.coords.longitude;
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-  console.log(apiUrl);
   axios.get(apiUrl).then(displayWeather);
 }
 
