@@ -28,6 +28,11 @@ li {
 li:first-letter {
   text-transform: capitalize;
 }
+.cities {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 8px;
+}
 
 .page-container {
   width: 600px;
